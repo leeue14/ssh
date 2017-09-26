@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- 1.注解：扫描所有  -->
+	<context:component-scan base-package="ssh.*"></context:component-scan>
+
+	<!-- 2.数据库信息 -->
+	<context:property-placeholder location="classpath:db.properties" />
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<!-- 3.sessionFactory  -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!-- 注入数据库信息 -->
+		<property name="dataSource" ref="dataSource"></property>
+
+		<!-- 配置hibernate基本信息：hibernate.cfg.xml -->
+		<property name="configLocations" value="classpath:hibernate.cfg.xml"></property>
+	</bean>
+
+	<!-- 4.注入声明式事务：注解 -->
+	<import resource="classpath:spring/transaction.xml" />
+
+
+
+	<!-- 注入首页模块 -->
+	<import resource="classpath:spring/index.xml" />
+	<!-- 注入用户user模块 -->
+	<import resource="classpath:spring/user.xml" />
+
+	<!-- 验证码 -->
+	<import resource="classpath:spring/checkImg.xml" />
+
+	<!-- 注入一级分类category -->
+	<import resource="classpath:spring/category.xml" />
+
+	<!-- 注入product.xml -->
+	<import resource="classpath:spring/product.xml" />
+
+	<!-- 注入cart.xml -->
+	<import resource="classpath:spring/cart.xml" />
+
+	<!-- 注入订单订单项.xml -->
+	<import resource="classpath:spring/order.xml" />
+
+	<!-- 注入后台adminuser -->
+	<import resource="classpath:spring/adminuser.xml" />
+
+	<!-- 注入二级分类 -->
+	<import resource="classpath:spring/categorysecond.xml" />
+</beans>

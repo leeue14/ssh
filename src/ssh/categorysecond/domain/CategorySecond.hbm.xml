@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-25 8:42:03 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ssh.categorysecond.domain.CategorySecond" table="CATEGORYSECOND">
+        <id name="csid" type="java.lang.Integer">
+            <column name="CSID" />
+            <generator class="native" />
+        </id>
+        <property name="csname" type="java.lang.String">
+            <column name="CSNAME" />
+        </property>
+       <!-- 配置关联关系(与一级分类的关联) -->
+		<many-to-one name="category" class="ssh.category.domain.Category" column="cid"/>
+	
+		<!-- 配置与商品关联 -->
+		<set name="products">
+			<key column="csid"></key>
+			<one-to-many class="ssh.product.domain.Product"/>
+		</set>
+    </class>
+</hibernate-mapping>

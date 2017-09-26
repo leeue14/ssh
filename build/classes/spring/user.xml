@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- action -->
+	<bean id="userAction" class="ssh.user.action.UserActionImpl"
+		scope="prototype"></bean>
+
+	<!-- service -->
+	<bean id="userService" class="ssh.user.service.UserServiceImpl">
+	</bean>
+
+	<!-- dao -->
+	<bean id="userDao" class="ssh.user.dao.UserDaoImpl"></bean>
+
+</beans>

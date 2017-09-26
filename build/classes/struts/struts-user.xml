@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	
+	<!-- return -->
+	<package name="user" namespace="/" extends="common">
+		
+		<!-- 2.配置用户访问的Action -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="registPageSuccess">/WEB-INF/jsp/regist.jsp</result>
+			<!-- 后台校验失败input -->
+			<result name="registInput">/WEB-INF/jsp/regist.jsp</result>
+			<result name="registSuccess">/WEB-INF/jsp/msg.jsp</result>
+			<result name="activeSuccess">/WEB-INF/jsp/msg.jsp</result>
+			
+			<result name="loginInput">/WEB-INF/jsp/login.jsp</result>
+			<result name="loginPageSuccess">/WEB-INF/jsp/login.jsp</result>
+			<result name="loginSuccess" type="redirectAction">index_index</result>
+			
+			<result name="quitSuccess" type="redirectAction">index_index</result>
+		</action>	
+		
+	</package>
+
+
+</struts>

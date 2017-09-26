@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 1 常量 -->
+	<!-- 1.1开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 1.2标签主题，简单风格 -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+    <!-- 将对象交给spring管理 -->    
+    <constant name="struts.objectFactory" value="spring" />    
+    <!-- 指定资源编码类型 -->    
+    <constant name="struts.i18n.encoding" value="UTF-8" />     
+    <!-- 指定每次请求到达，重新加载资源文件 -->    
+    <constant name="struts.i18n.reload" value="false" />    
+    <!-- 指定每次配置文件更改后，自动重新加载 -->    
+    <constant name="struts.configuration.xml.reload" value="false" />    
+    <!-- 默认后缀名 -->    
+    <constant name="struts.action.extension" value="action," /> 
+	
+	
+	<!-- return -->
+	<package name="common" namespace="/" extends="struts-default">
+		<!-- 拦截器 -->
+		<interceptors>
+			<!-- 后台：登录拦截器：1.声明拦截器 -->
+			<interceptor name="loginInterceptor" class="ssh.web.interceptor.LoginInterceptor"></interceptor>
+			
+			<!-- 自动登录拦截器：1.声明拦截器 -->
+			<interceptor name="autoLoginInterceptor" class="ssh.web.interceptor.AutoLoginInterceptor"></interceptor>						
+		</interceptors>
+		
+		<global-results>
+    		<result name="msg">/WEB-INF/jsp/msg.jsp</result>
+    		<result name="login">/admin/index.jsp</result>
+    	</global-results>		
+		
+	</package>
+
+	<!-- 1.配置首页访问的Action -->
+	<include file="struts/struts-index.xml"/>
+	
+	<!-- 2.配置用户访问的Action -->
+	<include file="struts/struts-user.xml"/>
+	
+	<!-- 3.验证码  -->
+  	<include file="struts/struts-checkImg.xml"/>
+
+	<!-- 4.配置商品的action -->
+	<include file="struts/struts-product.xml"/>
+
+	<!-- 5. 购物车的action -->
+	<include file="struts/struts-cart.xml"/>
+
+	<!-- 6.订单 -->
+	<include file="struts/struts-order.xml"/>
+	
+	<!-- 7.后台用户 -->
+	<include file="struts/struts-adminUser.xml"/>
+
+	<!-- 8.后台：一级分类 -->
+	<include file="struts/struts-category.xml"/>
+
+	<!-- 9.后台二级分类 -->
+	<include file="struts/struts-categorySecond.xml"/>
+
+
+
+
+
+
+<!-- 
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="index" />
+
+        <global-results>
+            <result name="error">/WEB-INF/jsp/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+
+        <action name="index">
+            <result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">/example</param>
+            </result>
+        </action>
+    </package>
+
+    <include file="example.xml"/> -->
+
+    <!-- Add packages here -->
+
+</struts>

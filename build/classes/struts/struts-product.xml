@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 前台业务 -->
+	<package name="product" namespace="/" extends="common">
+		<!-- 4.配置商品的action -->
+		<action name="product_*" class="productAction" method="{1}">
+			<result name="findByCidSuccess">/WEB-INF/jsp/list.jsp</result>
+			<result name="findByPidSuccess">/WEB-INF/jsp/desc.jsp</result>
+			<result name="findByCsidSuccess">/WEB-INF/jsp/cslist.jsp</result>
+			
+			
+			<result name="adminFindAllSuccess">/admin/product/list.jsp</result>
+			<result name="addPageSuccess">/admin/product/add.jsp</result>
+			<result name="saveSuccess" type="redirectAction">product_adminFindAll.action?page=1</result>
+			<result name="deleteSuccess" type="redirectAction">product_adminFindAll.action?page=1</result>
+			
+			<!-- 2.使用自定义拦截器 -->
+			<interceptor-ref name="loginInterceptor">
+				<param name="includeMethods">adminFindAll,addPage,save</param>
+			</interceptor-ref>
+			<!-- 3.手动开启默认拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	
+	</package>
+
+</struts>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	
+	<!-- return -->
+	<package name="index" namespace="/" extends="common">
+		
+		<!-- 1.配置首页访问的Action -->
+		<action name="index_*" class="indexAction"  method="{1}">
+			<result name="indexSuccess">/WEB-INF/jsp/index.jsp</result>
+			
+			<!-- 2.使用自定义拦截器 -->
+			<interceptor-ref name="autoLoginInterceptor">
+				<param name="includeMethods">index</param>
+			</interceptor-ref>
+			<!-- 3.手动开启默认拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>	
+		
+	</package>
+
+
+</struts>

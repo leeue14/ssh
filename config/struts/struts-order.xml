@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="order" namespace="/" extends="common">
+	
+		<!-- 6.订单 -->
+		<action name="order_*" class="orderAction" method="{1}">
+			<result name="saveOrderSuccess">/WEB-INF/jsp/order.jsp</result>
+			<result name="findByUidSuccess">/WEB-INF/jsp/orderlist.jsp</result>
+			<result name="findByOidSuccess">/WEB-INF/jsp/order.jsp</result>
+			<result name="adminFindAllSuccess">/WEB-INF/jsp/list.jsp</result>
+			<result name="updateStateSuccess" type="redirectAction">order_findByUid</result>
+			
+			<result name="adminFindAllSuccess">/admin/order/list.jsp</result>
+			<result name="adminFindByStateSuccess">/admin/order/list.jsp</result>
+			<result name="adminUpdateStateSuccess" type="redirectAction">order_adminFindAll.action?page=1</result>
+			
+			<result name="deleteOrderSuccess" type="redirectAction">order_adminFindAll.action?page=1</result>
+			
+			<!-- 2.使用自定义拦截器 -->
+			<interceptor-ref name="loginInterceptor">
+				<param name="includeMethods">adminFindAll,adminFindByState,adminUpdateState</param>
+			</interceptor-ref>
+			<!-- 3.手动开启默认拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+	</package>
+
+</struts>

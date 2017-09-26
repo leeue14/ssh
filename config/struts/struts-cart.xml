@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- return -->
+	<package name="cart" namespace="/" extends="common">
+	
+		<!-- 购物车的action -->
+		<action name="cart_*" class="cartAction" method="{1}">
+			<result name="addCartSuccess">/WEB-INF/jsp/cart.jsp</result>
+			<result name="clearCartSuccess">/WEB-INF/jsp/cart.jsp</result>
+			<result name="removeCartSuccess">/WEB-INF/jsp/cart.jsp</result>
+			<result name="myCartSuccess">/WEB-INF/jsp/cart.jsp</result>
+		</action>
+	</package>
+
+</struts>

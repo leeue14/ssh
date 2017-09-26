@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- action -->
+	<bean id="categorySecondAction" class="ssh.categorysecond.action.CategorySecondActionImpl"
+		scope="prototype"></bean>
+
+	<!-- service -->
+	<bean id="categorySecondService" class="ssh.categorysecond.service.CategorySecondServiceImpl"></bean>
+
+	<!-- dao -->
+	<bean id="categorySecondDao" class="ssh.categorysecond.dao.CategorySecondDaoImpl">
+	</bean>
+</beans>

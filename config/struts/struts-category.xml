@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+
+	<package name="category" namespace="/" extends="common">
+		
+		<!-- 8.后台：一级分类 -->
+		<action name="category_*" class="categoryAction" method="{1}">
+			<result name="adminFindAllScccess">/admin/category/list.jsp</result>
+			<result name="saveSuccess" type="redirectAction">category_adminFindAll</result>
+			<result name="deleteSuccess" type="redirectAction">category_adminFindAll</result>
+			<result name="editSuccess">/admin/category/edit.jsp</result>
+			<result name="updateSuccess" type="redirectAction">category_adminFindAll</result>
+			
+			<!-- 2.使用自定义拦截器 -->
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			<!-- 3.手动开启默认拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+	</package>
+
+
+</struts>

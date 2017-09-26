@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="categorySecond" namespace="/" extends="common">
+		<!-- 9.后台二级分类 -->
+		<action name="categorySecond_*" class="categorySecondAction" method="{1}">
+			<result name="adminFindAllSuccess">/admin/categorysecond/list.jsp</result>
+			<result name="addPageSuccess">/admin/categorysecond/add.jsp</result>
+			<result name="saveSuccess"  type="redirectAction">categorySecond_adminFindAll?page=1</result>
+			
+			<!-- 2.使用自定义拦截器 -->
+			<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			<!-- 3.手动开启默认拦截器 -->
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+	</package>
+
+
+</struts>
